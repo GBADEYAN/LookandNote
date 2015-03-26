@@ -1,0 +1,94 @@
+body
+{
+  margin: 15px 0 ;       /*marge haute et basse à 10 pixels, droite et gauche à 0 pixel*/
+  padding: 0 ;           /*rembourrage (remplissage) à 0*/
+  text-align: center ;
+  background-color: Cyan ;
+  width: auto;
+  height: auto;
+}
+#conteneur
+{
+  width: 90% ;
+  margin: 0 auto ;
+  text-align: left ;
+  border: 2px solid DarkTurquoise ;
+  background: #fff ;
+  height: auto;
+}
+#header
+{
+  height: 258px;        /*la heuteur de l'entête (l'interlignement entre le title Colored Design et le reste de la page)*/
+  background: url(headeracceuil.png) no-repeat 0 0 ; 
+  margin: 0;
+}
+marquee
+{
+  color: Lime;
+}
+ul#champinsc
+{
+	align: right;
+    margin: -210px 0;
+    list-style-type: none ;
+	display: block ;
+	margin-left: 500px;
+}
+ul#champinsc li, ul#gererconex li
+{
+  float: left;
+}
+ul#gererconex
+{
+  margin-left: 634px;
+  list-style-type: none ;
+}
+#contenu
+{
+	margin-top: 190px;
+	text-align: center;
+}
+#imgart
+{
+	margin-left: 80px;
+}
+#insc
+{
+	margin-top: -320px;
+	text-align:right;
+	margin-right: 150px;
+}
+#sections
+{
+	margin-left: -500px;
+	margin-top: 120px;
+}
+#sour
+{
+	margin-top: 130px;
+	margin-left: -900px;
+}
+
+#slogan
+{
+	margin-left: 740px;
+	margin-top:-75px;
+}
+footer
+{
+ margin-top: 10px;
+ color: black;
+ text-align: left;
+ margin-bottom: 30px;
+ 
+}
+a:link
+{
+	color: black;
+	text-decoration: none;
+}
+a:visited
+{
+	color: black;
+	text-decoration: none;
+}

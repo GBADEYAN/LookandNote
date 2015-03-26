@@ -1,0 +1,86 @@
+body
+{
+    background: LightYellow ;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: #181818;
+}
+
+#bloc_form
+{
+    width: 95%;
+    margin: auto;
+}
+header
+{
+	background: url('EnteteForm.png') no-repeat;
+}
+
+header h1
+{
+	font-family: 'BallparkWeiner', serif;
+	font-size: 2.5em;
+	font-weight: normal;
+	text-align: center;
+}
+
+nav
+{
+    display: inline-block;
+    width: 1200px;
+    text-align: left;
+	margin-bottom: -10px;
+}
+
+nav ul
+{
+    list-style-type: none;
+}
+
+nav li
+{
+    display: inline-block;
+    margin-right: 15px;
+}
+
+nav a
+{
+    font-size: 1.3em;
+    color: #181818;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+
+nav a:hover
+{
+    color: #760001;
+    border-bottom: 3px solid #760001;
+}
+
+th
+{
+	width: 300px;
+	text-align: left;
+}
+tr
+{
+	height: 50px;
+}
+footer
+{
+ margin-top: 10px;
+ color: black;
+ text-align: left;
+ margin-bottom: 30px;
+ 
+}
+a:link
+{
+	color: black;
+	text-decoration: none;
+}
+section h1, footer h1, nav a
+{
+    font-family: Dayrom, serif;
+    font-weight: normal;
+    text-transform: uppercase;
+}

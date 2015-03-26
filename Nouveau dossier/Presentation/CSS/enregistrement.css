@@ -1,0 +1,195 @@
+﻿body
+{
+  margin: 10px; ;       /*marge haute et basse à 10 pixels, droite et gauche à 0 pixel*/
+  padding: 0 ;           /*rembourrage (remplissage) à 0*/
+  text-align: center ;
+  background-color: Cyan ;
+  width: auto;
+}
+#conteneur
+{
+  width: 90% ;
+  margin: 0 auto ;
+  text-align: left ;
+  border: 2px solid DarkTurquoise ;
+  background: #fff ;
+  
+}
+#header
+{
+  height: 258px;        /*la heuteur de l'entête (l'interlignement entre le title Colored Design et le reste de la page)*/
+  background: url(../Image/headerenregistrement.png) no-repeat 0 0 ; 
+  margin: 0;
+}
+marquee
+{
+  color: white;
+}
+#boutons
+{
+	margin-top: -145px;
+}
+ul#menu
+{
+    height: 35px ;
+    margin:  0;
+    padding: 0 ;
+    background: url(../Image/headerenregistrement.png) no-repeat left bottom ;
+    list-style-type: none ;
+}
+ul#menu li
+{
+	margin: 10px 0;
+    float: left ;    
+    text-align: center ;
+}
+ul#menu li a
+{
+    width: 160px ;
+    line-height: 25px ;
+    font-size: 1.2em ;
+    font-weight: bold ;
+    letter-spacing: 2px ;
+    color: #fff ;
+    display: block ;
+    text-decoration: none ;
+    border-right: 2px solid #dea ;
+}
+#rechavancée li 
+{
+	font-size: 0.6em ;
+}
+#Bonjour 
+{
+	
+	margin-left: 81%;
+	
+	
+}
+#Bonjour  li
+{
+	margin-top: -150px;
+	color: white; 
+	float: left ; 
+	font-size: 1.2em ;
+}
+#Bonjour b
+{
+	line-height: 80px ;
+	margin-left: -190px;
+}
+#Bonjour li a
+
+{
+	line-height: 80px;
+	font-size: 0.8em ;
+	font-weight: bold ;
+	color: #fff ;
+}
+
+#sectiondroite
+{
+	background-color: #ccc;
+    float: left;
+    width: 200px;
+    border: 2px solid Orange;
+	text-align: center;
+	font-weight: bold;
+	color: red;
+	}
+#sectiondroite a
+{
+	color: red ;
+}
+#sectiongauche img
+{
+	border: 2px solid red;
+}
+#sectiondroite img
+{
+	border: 2px solid red;
+}
+#sectiongauche
+{
+	background-color: #ccc ;
+	width: 200px;
+    border: 2px solid Orange ;
+	margin-left: 83%;
+	text-align: center;
+	color: red;
+}
+#pagemilieu
+{
+	float: left;
+	border: 2px solid Orange ;
+	width: 785px;
+	height: 111%;
+}
+#pagemilieu p
+{
+	margin-left: 90px;
+	margin-top: -50px;
+}
+
+#pagemilieu img
+{
+	margin-left: 10px;
+	margin-top: 20px;
+}
+#pagemilieu a
+{
+	color: red;
+	text-decoration: none;
+}
+#pub
+{
+	text-align: center;
+	color: red;
+}
+#boutonspub
+{
+	margin-top: 40px;
+}
+#partager
+{
+	 color: red;
+	 font-size: 1.5em;
+	 width: 135px;
+	 height: 60px;
+	 margin: 10px;
+	 padding: 0;
+	 background-color: #ccc;
+	 border:none;
+	 font-weight: bold;
+
+}
+#Noter
+{
+	 color: red;
+	 font-size: 1.5em;
+	 width: 135px;
+	 height: 60px;
+	 margin: 10px;
+	 padding: 0;
+	 background-color: #ccc;
+	 border:none;
+	 font-weight: bold;
+
+}
+#Commenter
+{
+	 color: red;
+	 font-size: 1.5em;
+	 width: 135px;
+	 height: 60px;
+	 margin: 10px;
+	 padding: 0;
+	 background-color: #ccc;
+	 border:none;
+	 font-weight: bold;
+
+}
+footer a
+{
+	color: red;
+}

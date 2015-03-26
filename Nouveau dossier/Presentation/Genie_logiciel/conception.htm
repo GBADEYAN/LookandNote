@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="Jean-Michel Couvreur">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.02 [en] (Win95; I) [Netscape]">
+   <TITLE>Dossier de conception</TITLE>
+</HEAD>
+
+<style>
+.l1{
+font-size:25px;
+text-decoration:underline;
+}
+.l2{
+font-size:20px;
+}
+img{
+width:100%;
+}
+</style>
+
+<BODY>
+
+<CENTER><FONT SIZE=+4>Dossier de conception</FONT></CENTER>
+
+<CENTER>
+<HR WIDTH="100%"></CENTER>
+
+<H1>
+1- Architecture de haut niveau</H1>
+
+<UL>Description de l'architecture du syst&egrave;me / diagramme de flot
+/ liste des modules.
+<BR>Description des &eacute;l&eacute;ments techniques du syst&egrave;me
+en rapport avec l'architecture
+<BR>Description des interactions entre modules</UL>
+<table border=1px>
+  <tr>
+    <td>
+      <img src="Image/diag_flot.png" alt="diagramme de flot">
+    </td>
+    <td valign=top>
+       Exemple de diagramme de flot dans le cas o&ugrave; l'inscription se passe bien<br>
+       <ol>
+	  <li>L'utilisateur rempli le formulaire d'inscription (nom,email et mot de passe) sur la page accueil.php.</li>
+	  <li>Le formulaire est trait&eacute; par le contrôleur controleur.php.</li>
+	  <li>controleur.php fait appel &agrave; la page Gestion_client.php et utilise la fonction inscript avec les paramètres d 'entr&eacute;es rentr&eacute;es dans le formulaire d'inscription.</li>
+	  <li>La fonction commence par v&eacute;rifier les donn&eacute;es, tout d'abord en demandant si le nom existe d&eacute;j&agrave; ou non dans la base de donn&eacute;e.</li>
+	  <li>Dans notre cas, le nom entr&eacute; n'existe pas, la base ne renvoie aucun r&eacute;sultat.</li>
+	  <li>Demande &agrave; la base si l'email entr&eacute; existe d&eacute;j&agrave;.</li>
+	  <li>La base ne renvoie aucun r&eacute;sultat.</li>
+	  <li>Insertion des donn&eacute;es dans la base de donn&eacute;es.</li>
+	  <li>Retour « OK »</li>
+	  <li>La fonction renvoie le nom, l'email et la photo de profil par defaut au controleur, celui-ci les enregistre comme variable de session.</li>
+	  <li>Le controleur renvoie vers la page accueil_util.php, qui est la page d'accueil après connexion.</li>
+       </ol>
+    </td>
+  </tr>
+</table>
+
+<H1>
+2- Justification de l'architecture</H1>
+
+<H1>
+3- Description des unit&eacute;s</H1>
+
+<UL>Structure de haut niveau de chaque modules (mod&egrave;le, interface)
+<BR>Structure d&eacute;taill&eacute;e de chaque module (algorithmes)</UL>
+<br>
+<ol>
+  <li class="l1">Pr&eacute;sentation</li>
+  <ol>
+    <li class="l2">Controleur</li>
+    [mettre automate]
+    <li class="l2">Pages</li>
+    <ul>
+      <li>acceuil.php</li>
+      <li>aPropos.html</li>
+      <li>Contact.html</li>
+      <li></li>
+      <li></li>
+    </ul>
+    <li class="l2">CSS</li>
+    <li class="l2">Image</li>
+  </ol>
+<br>
+  <li class="l1">M&eacute;tier</li>
+  <ol>
+    <li class="l2"></li>
+  </ol>
+<br>
+  <li class="l1">Donn&eacute;es</li>
+  <ol>
+    <li class="l2"></li>
+    <li class="l2">Base de donn&eacute;es</li>
+    <table border=1px align="center">
+      <tr>
+        <th><img src="Image/MCD.png" alt="MCD"></th>
+      </tr>
+      <tr>
+        <th>Modele Conceptuel des Donn&eacute;es</th>
+      </tr>
+    </table>
+  </ol>
+</ol>
+
+<H1>
+4- Description de l'interface utilisateur</H1>
+&nbsp;
+<HR WIDTH="100%">
+<BR><A HREF="acceuil.htm">titre du projet</A>
+</BODY>
+</HTML>
