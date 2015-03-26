@@ -1,0 +1,50 @@
+Dans dossier Projet Web :
+	Tout ce qui est utile mais qui ne constitue pas le site en lui-meme (powerpoint, word, reference a des sites...)
+	
+Organisatin du site : Nouveau Dossier
+
+-Presentation
+	->controleur.php
+	-pages_site
+		(liste pages du site)
+		->acceuil.php
+		->aPropos.html
+		->Contact.html
+		->Confidentialite.html
+		->MentionLegale.html
+		->acceuil_util.php	
+		->publier.php
+		->profil.php
+		->
+		->
+		->ami.php
+	-CSS
+		(regroupe les styles utilises dans le site)
+	-Image
+		(regroupe les images utilisees dans le site (en commun))
+	-Genie_logiciel
+		(liste page GL)
+		->acceuil.html
+		->besoin.html
+		->conception.html
+		->plan.html
+		->presentation.html
+		->prototype.html
+		->recette.html
+		-Image
+			(regroupe image utilisees dans les pages de GL)
+
+-Metier
+	(liste des fonctions php utilises dans le site)
+	->Gestion_client.php (connexion/deconnexion et inscription/desinscription)
+	->Gestion_photo.php (publier, noter, commenter)
+	->Gestion_BDD.php (connexion/deconnexion)
+
+
+-Donnees
+	-BDD
+		(fonctions qui cree base et table)
+	-(1fichier image/user?)
+	
+	
+	
