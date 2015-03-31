@@ -1,10 +1,7 @@
 ﻿<?php
-//session_start();
+
 require_once("Gestion_bdd.php");
 
-$dir_err = "../Presentation/accueil_test.php";
-$dir_ok = "../Presentation/test.php";
-$dir_d = "../../Donnees/";
 
 //9-------------Inscription------------
 function inscript($nom,$email,$mdp){
@@ -54,9 +51,9 @@ function inscript($nom,$email,$mdp){
                die("Echec insertion");
            }//--10
            else{//--11
-               mkdir($dir_d.$nomi);               
+               mkdir($dir_d.$nomi);  if(is_dir($dir_d.$nomi)){echo "creation dossier ok";}             
                $row=mysql_fetch_assoc($req);
-              return array($row["nom"],$row["email"],$row["photo_profil"],"");
+              return array($row["id_util"],$nomi,$emaili,"../Image/photoprofil.png");
            } //--11    
        }//--9
        else{
@@ -71,16 +68,27 @@ function inscript($nom,$email,$mdp){
 }
 
 
+
 //76-------------Desinscription------------
 
 function desinscript($nom){//--1
   $dir_d = "../../Donnees/";  
   $connex=connexion_bdd();$msg="pas ok";  
-  if(!empty($nom)){//--2
-      rmdir($dir_d.$nom);
+  $dir=$dir_d.$nom;
+  if (is_dir($dir)) {
+    if ($dh = opendir($dir)) {
+        while (($file = readdir($dh)) !== false) {
+		umask(0000); 
+ 		chmod($file,0777); 
+        	@unlink($dir.$file);
+        }
+        closedir($dh);
+    }
+  }
+      rmdir($dir);
     //echo "desinsc OK";
     
-    $sql0="SELECT id_util FROM Utilisateur inner join Photo on Utilisateur.id-util=Photo.id_post WHERE nom=\"$nom\"";
+    $sql0="SELECT * FROM Utilisateur,Photo,Critere WHERE nom=\"$nom\" and id_util=id_post";
     $req0=mysql_query($sql0,$connex);
     if($req0){//--4
 	 $msg="sql0 OK";
@@ -88,10 +96,12 @@ function desinscript($nom){//--1
 	//$ID=$row["id-util"];
 	//$sql1="DELETE FROM *
     }//--4
-  }//--2
+  //--2
     session_destroy();
     return $msg;
 }//--1
+
+
 
 //86-------------Connexion------------
 
@@ -122,7 +132,7 @@ function connex($email,$mdp){
       }
       if(!isset($msg2) && !isset($msg3)){
         $row=mysql_fetch_assoc($req);
-        return array($row["nom"],$row["email"],$row["photo_profil"]);
+        return array($row["id_util"],$row["nom"],$row["email"],$row["photo_profil"]);
       }
       else{
         return array($msg2,$msg3);
