@@ -1,0 +1,1 @@
+﻿<?php header('Location:./pages_site/acceuil.html');

@@ -33,5 +33,4 @@ function connexion_bdd(){
   }
 }
 
-
 ?>
