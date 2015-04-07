@@ -62,8 +62,8 @@ if($etat="nonconn"){
 if($_SESSION["etat"]=="conn"){
 //63--Desincription
 	if(isset($_POST["desinsc"])){
-		desinscript($_SESSION["nom"]);
-	    //echo "Desinsc OK";
+		desinscript($_SESSION["id"]);
+	    
 		$_SESSION["etat"]="nonconn";
 		$page="accueil_test.php";
 		unset_session();
@@ -78,10 +78,12 @@ if($_SESSION["etat"]=="conn"){
 	}
 
 //80--Publication de photo (insertion)
+
 	if(isset($_POST["publ_photo"])){
 		$taille=$_FILES["mon_fichier"]["size"];//80
 		$type=$_FILES["mon_fichier"]["type"];
 		$titre=$_POST["titre"];
+		$critere=$_POST["critere"];
 		$fichier=$_FILES["mon_fichier"];
 		$nom_fichier=$_FILES["mon_fichier"]["name"];
 		$tmp=$_FILES["mon_fichier"]["tmp_name"];
@@ -94,9 +96,10 @@ if($_SESSION["etat"]=="conn"){
 		if($err==UPLOAD_ERR_PARTIAL){$msg="fichier transfere partiellementmanquant";}
 		if(empty($msg)){
 			$msg="";$msg2="";
-			$M=publ_photo($fichier,$taille,$type,$nom_fichier,$tmp,$titre,$date,$_SESSION["id"],$_SESSION["nom"]);
+			$M=publ_photo($fichier,$taille,$type,$nom_fichier,$tmp,$titre,$date,$_SESSION["id"],$_SESSION["nom"],$critere);
 			$msg=$M[0];
 			$msg2=$M[1];
+			$msg3=$M[2];
 		}
 		$page="publ_photo.php";	
 	}
@@ -127,6 +130,9 @@ if($_SESSION["etat"]=="conn"){
 			case "c":
 				$page="ami.php";
 				break;
+			case "r":
+				$page="ami.php";
+				break;
 
 			//deconnexion
 			case "z":
@@ -153,12 +159,16 @@ if($_SESSION["etat"]=="conn"){
 
 //Gestion des photos
 	if($page=="publ_photo.php"){
-		if(isset($_POST["submit_t2"])){
+		if(isset($_POST["submit_t2"])){ //renommer photo
 			$t2=htmlentities(stripslashes($_POST["t2"]));
 			renom_photo($t2,$_POST["lien_mv"]);
 		}
-		if(isset($_POST["submit_rm"])){			
-			supp_photo($_POST["lien_rm"]);echo "supp photo ok";
+		if(isset($_POST["submit_c2"])){ //renommer photo
+			$c2=htmlentities(stripslashes($_POST["c2"]));
+			renom_photo($c2,$_POST["lien_mv"]);
+		}
+		if(isset($_POST["submit_rm"])){	//supprimer photo		
+			supp_photo($_POST["lien_rm"]);
 		}
 		
 		$pp=aff_photo_perso($_SESSION["id"]);
