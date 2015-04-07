@@ -1,14 +1,13 @@
-﻿<?php
+<?php
 
 require_once("Gestion_bdd.php");
 
 
-//9-------------Inscription------------
+//5-------------Inscription------------
 function inscript($nom,$email,$mdp){
-  //$connex = connexion_bdd();
-global $connex;
+  $connex = connexion_bdd();
   $dir_d = "../../Donnees/";
-/*15--verification des donnees------*/
+/*10--verification des donnees------*/
     $nomi = stripslashes(htmlentities($nom,ENT_QUOTES,'UTF-8'));//echo "nomi:".$nomi."<br>";
     $emaili = stripslashes(htmlentities($email,ENT_QUOTES,'UTF-8'));
     $mdp = stripslashes(htmlentities($mdp,ENT_QUOTES,'UTF-8'));  
@@ -16,35 +15,33 @@ global $connex;
     if(strlen($nomi)<1 || (!isset($nomi))){//--1
        $msg1 = "(*) Nom d un caractere obligatoire";
     }//--1
-  /*23email obligatoire*/
+  /*18email obligatoire*/
     if(strlen($emaili)<1 || (!isset($emaili))){//--2	
        $msg2 = "(*) email obligatoire";
     }//--2
-  /*27mdp obligatoire*/
+  /*22mdp obligatoire*/
     if(strlen($mdp)<1 || (!isset($mdp))){//--3	
        $msg3 = "(*) mdp obligatoire";
     }//--3
     $mdp=md5($mdp);
      
-  /*32--deja inscrit?-----------------*/
-    if(!isset($msg1) && !isset($msg2) && !isset($msg3)){//--4
-        $sql="select * from Utilisateur where email=\"".$emaili."\"";
-	   $req=mysql_query($sql);
-	   if(!$req){//--5
-           Die("Requete invalide:".mysqli_connect_error());
-        }//--5
+  /*28--deja inscrit?-----------------*/
+    if(!isset($msg1) && !isset($msg2) && !isset($msg3)){//--4	   
+      $sql="SELECT * FROM Utilisateur WHERE email=\"".$emaili."\"";
+      $req=mysql_query($sql,$connex);
+      if(!$req){ Die("Requete invalide:".mysqli_connect_error());}
 	   if(mysql_num_rows($req)>0){//--6
 	       $msg2="(*) mail deja inscrit ";
 	   }//--6
 	   $sql1="select * from Utilisateur where nom=\"".$nomi."\"";
-	   $req1=mysql_query($sql1);
+	   $req1=mysql_query($sql1,$connex);
 	   if(!$req1){//--7
             Die("Requete invalide:".mysqli_connect_error());
        }//--7
 	   if(mysql_num_rows($req1)>0){//--8
 	       $msg1="(*) nom deja utilise";
 	   }//--8
-  /*52--Insertion des données-----------*/
+  /*46--Insertion des données-----------*/
 	   if(!isset($msg1) && !isset($msg2)){//--9
 	       $sql="insert into Utilisateur(nom,email,mdp)values(\"".$nomi."\",\"".$emaili."\",\"".$mdp."\")";
 	       $req=mysql_query($sql,$connex);
@@ -70,39 +67,57 @@ global $connex;
 
 
 
-//76-------------Desinscription------------
+//72-------------Desinscription------------
 
 function desinscript($nom){//--1
   $dir_d = "../../Donnees/";  
   $connex=connexion_bdd(); 
   $dir=$dir_d.$nom;$msg="";
+  $ID=id_nom($nom);
+
+//suppression dossier photo
    if (is_dir($dir)) {
      $objects = scandir($dir);
      foreach ($objects as $object) {
        if ($object != "." && $object != "..") {
-         if (filetype($dir."/".$object) == "dir") rmdir($dir."/".$object); else unlink($dir."/".$object);
+         if (filetype($dir."/".$object) == "dir"){ rmdir($dir."/".$object);}
+	 else {unlink($dir."/".$object);}
        }
      }
      reset($objects);
      rmdir($dir);
    }
-    //echo "desinsc OK";
-    
-    $sql0="SELECT * FROM Utilisateur,Photo,Critere WHERE nom=\"$nom\" and id_util=id_post";
-    $req0=mysql_query($sql0,$connex);
-    if($req0){//--4
-	 $msg=$msg."sql0 OK";
-	$row=mysql_fetch_assoc($req0);
-	$ID=$row["nom"];$msg=$msg.$ID;
-	$sql1="DELETE FROM Photo where id_post=\"".$ID."\"";// or id_comm=\"".$ID."\" or id_noteur=\"".$ID."\"";
-	$req1=mysql_query($sql1,$connex);
-	if($req1){
-		$msg="OK tout supprimer";
+
+//Suppression dans la BDD
+//toutes les photos postees
+
+	$ens_photo=lienphoto_perso($ID);
+	for($i=0;$i<count($ens_photo);$i++){
+		supp_photo($ens_photo[$i]);
 	}
-    }//--4
-  //--2
+//tous les comm, notes donnes par l'utilisateur
+	$sql01="delete from Commentaire where id_comm=\"".$ID."\"";
+	$sql02="delete from Notation where id_noteur=\"".$ID."\"";
+	$sql03="delete from Ami where id_util1=\"".$ID."\" or id_util2=\"".$ID."\"";
+	$req01=mysql_query($sql01,$connex);
+	if(!$req01){
+		Die("Requete invalide:".mysqli_connect_error());
+	}
+	$req02=mysql_query($sql02,$connex);
+	if(!$req02){
+		Die("Requete invalide:".mysqli_connect_error());
+	}
+	$req03=mysql_query($sql03,$connex);
+	if(!$req03){
+		Die("Requete invalide:".mysqli_connect_error());
+	}
+//utilisateur
+	$sql04 = "delete from Utilisateur where id_util=\"".$ID."\"";
+	$req04=mysql_query($sql04,$connex);
+	if(!$req04){
+		Die("Requete invalide:".mysqli_connect_error());
+	}
     session_destroy();
-    return $msg;
 }//--1
 
 
