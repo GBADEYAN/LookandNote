@@ -1,15 +1,14 @@
 <?php
 
 require_once("Gestion_bdd.php");
-//require("Gestion_recherche.php");
 
 //---------Ajout d'amis------------
 function ajout_ami($id,$id_ami){
 	$connex=connexion_bdd();
 	$sql="insert into Ami (id_util1,id_util2) values(\"".$id."\",\"".$id_ami."\")";
-	$req=mysql_query($sql);
+	$req=mysql_query($sql,$connex);
 	   		if(!$req){
-           			Die("Requete invalide:".mysqli_connect_error());
+           			Die("Requete invalide df:".mysqli_connect_error());
        			}
 	return "";
 }
