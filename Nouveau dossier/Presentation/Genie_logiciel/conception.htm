@@ -29,11 +29,11 @@ width:100%;
 <H1>
 1- Architecture de haut niveau</H1>
 
-<!--<UL>Description de l'architecture du syst&egrave;me / diagramme de flot
+<UL>Description de l'architecture du syst&egrave;me / diagramme de flot
 / liste des modules.
 <BR>Description des &eacute;l&eacute;ments techniques du syst&egrave;me
 en rapport avec l'architecture
-<BR>Description des interactions entre modules</UL>-->
+<BR>Description des interactions entre modules</UL>
 <table border=1px>
   <tr>
     <td>
@@ -43,16 +43,16 @@ en rapport avec l'architecture
        Exemple de diagramme de flot dans le cas o&ugrave; l'inscription se passe bien<br>
        <ol>
 	  <li>L'utilisateur rempli le formulaire d'inscription (nom,email et mot de passe) sur la page accueil.php.</li>
-	  <li>Le formulaire est trait&eacute; par le contrÃ´leur controleur.php.</li>
-	  <li>controleur.php fait appel &agrave; la page Gestion_client.php et utilise la fonction inscript avec les paramÃ¨tres dÂ 'entr&eacute;es rentr&eacute;es dans le formulaire d'inscription.</li>
+	  <li>Le formulaire est trait&eacute; par le contrôleur controleur.php.</li>
+	  <li>controleur.php fait appel &agrave; la page Gestion_client.php et utilise la fonction inscript avec les paramètres d'entrées rentr&eacute;es dans le formulaire d'inscription.</li>
 	  <li>La fonction commence par v&eacute;rifier les donn&eacute;es, tout d'abord en demandant si le nom existe d&eacute;j&agrave; ou non dans la base de donn&eacute;e.</li>
 	  <li>Dans notre cas, le nom entr&eacute; n'existe pas, la base ne renvoie aucun r&eacute;sultat.</li>
 	  <li>Demande &agrave; la base si l'email entr&eacute; existe d&eacute;j&agrave;.</li>
 	  <li>La base ne renvoie aucun r&eacute;sultat.</li>
 	  <li>Insertion des donn&eacute;es dans la base de donn&eacute;es.</li>
-	  <li>Retour Â«Â OKÂ Â»</li>
+	  <li>Retour OK </li>
 	  <li>La fonction renvoie le nom, l'email et la photo de profil par defaut au controleur, celui-ci les enregistre comme variable de session.</li>
-	  <li>Le controleur renvoie vers la page accueil_util.php, qui est la page d'accueil aprÃ¨s connexion.</li>
+	  <li>Le controleur renvoie vers la page accueil_util.php, qui est la page d'accueil après connexion.</li>
        </ol>
     </td>
   </tr>
@@ -60,12 +60,56 @@ en rapport avec l'architecture
 
 <H1>
 2- Justification de l'architecture</H1>
+L'architecture trois tiers a été choisie pour plusieurs raisons non-fonctionnelles. 
+    
+    <ul><H2>2.1. Avantages : </H2>
+    L'architecture trois tiers a été choisie pour plusieurs raisons non-fonctionnelles.  
+    <div style= "text-align:justify">
+    <ul><H3>2.1.1. Pratique</H3></ul>
+    Elle a été choisie tout d'abord pour les avantages pratiques qu'elle procure. Ces avantages sont principalement au nombre 3 : 
+    <ul>
+        <li>Les requêtes clients vers le serveur sont d'une plus grande flexibilité que dans celles de l'architecture 2-tiers basées sur le langage SQL.</li>
+        <li>Cette flexibilité permet d'envisager dans le cadre d'une architecture 3-tiers, une grande souplesse pour l'introduction ou la modification de toute nouvelle technologie. </li>
+        <li>Plus de flexibilité dans l'allocation des ressources, la portabilité du tiers serveur permet d'envisager une allocation et ou une modification dynamique aux grés des besoins évolutifs.</li>
+    </ul>
+    <br>
+	
+	En effet, ce modèle d'architecture, qui a une structure modulaire, simplifie l'écriture, ainsi que la modification des scripts.  La séparation des modules permet, en cas de besoin de les modifier séparément
+	sans contraindre le fonctionnement d'autres fonctionnalités et l'intégrité des données. Par exemple, en cas de modifications de la structure de la base de données, sa séparation dans une couche séparée du 
+	restant des scripts, offre une facilité de modification sans toucher aux autres couches.
+    <br>
+    De plus, ce modèle d'architecture permet la gestion précise de contraintes d'intégrité qui garantissent la cohérence des données. Les systèmes de gestion de
+	bases de données relationnelles (SGBDR) sont interfacés à l'aide d'un langage unique : le SQL (Structured Query Language). Ce langage permet d'effectuer
+	l'ensemble des opérations nécessaires sur la base de données. Ce langage permet également la gestion de transaction. Une transaction est définie par quatre
+	propriétés essentielles: Automaticité, Cohérence, Isolation et Durabilité (ACID). Ces propriétés garantissent l'intégrité des données dans un environnement
+	multiutilisateurs.
+	
+	<ul><H3>2.1.2. Apprentissagee<H3></ul>
+	 Dans le cadre de la réalisation de notre projet, cette structure d'architecture nous a été fortement conseillée. Elle nous a permis d'orienter nos recherches et 
+	 d'organiser le travail nécessaire pour la conception du site Look&Note. De plus, cette architecture nous a permis d'avoir une vision globale et au même temps plus
+	 détaillée du fonctionnement d'un site internet.
 
+	 <H2>2.2. Inconvénients : </H2>
+	 L'architecture client-serveur possède toutefois des inconvénients. Ces derniers sont au nombre de deux.
+	 <ul><H3>2.1.1. sécurité</H3></ul>
+	 La sécurité d'un système en architecture client-serveur est gérée au niveau du SGBDR. Celui-ci contrôle l'accès aux données en attribuant des autorisations
+	 d'accès aux différents utilisateurs du système. Le problème vient du fait que cette attribution de droit ne peut pas tenir compte des spécificités du 
+	 logiciel réalisé. Cette approche nécessite donc une gestion de sécurité plus importante.
+	  
+	  <ul><H3>2.2. Temps : </H3></ul>
+        L'acquisition de l'expertise de développement d'une architecture trois tiers nécessite un certain temps. Il s'agit donc du temps d'apprentissage. 
+		Dans le cadre de la réalisation de notre projet nous n'avons eu que 3 mois. Ainsi, nous avons été obligés de raccourcir ce temps. En effet, 
+		l'apprentissage de  l'expertise du développement d'une architecture trois tiers a été mélangé avec l'apprentissage d'autres connaissances informatiques. 
+        <br>
+        Ce sujet est souvent considéré comme beaucoup plus important par les entreprises car il est beaucoup plus visible. Le temps de développement d'une 
+		architecture 3-tiers semble plus élevé que pour celui de 2-tiers.
+		</ul>
+	 
 <H1>
 3- Description des unit&eacute;s</H1>
 
-<!--<UL>Structure de haut niveau de chaque modules (mod&egrave;le, interface)
-<BR>Structure d&eacute;taill&eacute;e de chaque module (algorithmes)</UL>-->
+<UL>Structure de haut niveau de chaque modules (mod&egrave;le, interface)
+<BR>Structure d&eacute;taill&eacute;e de chaque module (algorithmes)</UL>
 <br>
 <ol>
   <li class="l1">Pr&eacute;sentation</li>
@@ -86,10 +130,17 @@ en rapport avec l'architecture
 <br>
   <li class="l1">M&eacute;tier</li>
   <ol>
+    <li class="l2">Gestion_bdd.php</li>
+    Regroupe les fonctions de connexion, d&eacute;connexion, d'inscription et de désinscription du client.<br>
     <li class="l2">Gestion_client.php</li>
-    Regroupe les fonctions de connexion, d&eacute;connexion, d'inscription et de dÃ©sinscription du client.<br>
-    La fonction d'inscription (inscript($nom,$email,$mdp)) est appel&eacute;e lorsque le formulaire d'inscription sur la page d'accueil est rempli. Elle prend en paramÃ¨tres les champs de ce formulaire qui sont : le nom que souhaite avoir l'utilisateur, une adresse email et un mot de passe.
-    
+    Regroupe les fonctions de connexion, d&eacute;connexion, d'inscription et de désinscription du client.<br>
+    La fonction d'inscription (inscript($nom,$email,$mdp)) est appel&eacute;e lorsque le formulaire d'inscription sur la page d'accueil est rempli. Elle prend en paramètres les champs de ce formulaire qui sont : le nom que souhaite avoir l'utilisateur, une adresse email et un mot de passe. La fonction v&eacute;rifie tout d'abord la validit&eacute; des donn&eacute;es entr&eacute;es, si elles sont vides ou d&eacute;j&agrave; utilis&eacute;es par un autre utilisateur (dans le cas du nom et de l'email) en interrogeant la base de donn&eacute;es. Si tout est bon, un nouvel utilisateur est cr&eacute;&eacute; dans la base de donn&eacute;es avec ces param&egrave;tres ainsi qu'un dossier personnel portant le nom rentr&eacute;, dans le dossier Donn&eacute;es, qui servira &agrave; stocker ses photos; l'utilisateur est envoy&eacute; sur la page d'accueil d'utilisateur (accueil_util.php). Sinon, l'utilisateur restera sur la page d'accueil du site (accueil.php) o&ugrave; un (ou des) message(s) d'erreur(s) seront affich&eacute;s pr&egrave;s du formulaire d'inscription.<br>
+    La fonction de connexion (connex($email,$mdp)) est appel&eacute;e lorsque le formulaire de connexion sur la page d'accueil est rempli. Elle prend en paramètres les champs de ce formulaire qui sont : l'email et un mot de passe. La fonction v&eacute;rifie tout d'abord la validit&eacute; des donn&eacute;es entr&eacute;es, si elles sont vides ou d&eacute;j&agrave; utilis&eacute;es par un autre utilisateur (dans le cas du nom et de l'email) en interrogeant la base de donn&eacute;es. Si tout est bon, l'utilisateur est envoy&eacute; sur la page d'accueil d'utilisateur (accueil_util.php), sinon il restera sur la page d'accueil (accueil.php) o&ugrave; un (ou des) message(s) d'erreur(s) seront affich&eacute;s pr&egrave;s du formulaire de connexion.<br>
+    La fonction de d&eacute;connexion est appel&eacute;e lorsque . <br>
+    La fonction de d&eacute;sinscription est appel&eacute;e lorsque . <br>
+    <li class="l2">Gestion_client.php</li>
+    <li class="l2">Gestion_client.php</li>
+    <li class="l2">Gestion_client.php</li>
   </ol>
 <br>
   <li class="l1">Donn&eacute;es</li>
@@ -111,6 +162,6 @@ en rapport avec l'architecture
 4- Description de l'interface utilisateur</H1>
 &nbsp;
 <HR WIDTH="100%">
-<BR><A HREF="acceuil.htm">titre du projet</A>
+<BR><A HREF="acceuil.htm">Look&Note</A>
 </BODY>
 </HTML>
