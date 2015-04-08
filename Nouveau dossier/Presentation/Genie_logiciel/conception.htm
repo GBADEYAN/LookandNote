@@ -43,8 +43,8 @@ en rapport avec l'architecture
        Exemple de diagramme de flot dans le cas o&ugrave; l'inscription se passe bien<br>
        <ol>
 	  <li>L'utilisateur rempli le formulaire d'inscription (nom,email et mot de passe) sur la page accueil.php.</li>
-	  <li>Le formulaire est trait&eacute; par le contrôleur controleur.php.</li>
-	  <li>controleur.php fait appel &agrave; la page Gestion_client.php et utilise la fonction inscript avec les paramètres d'entrées rentr&eacute;es dans le formulaire d'inscription.</li>
+	  <li>Le formulaire est trait&eacute; par le contrÃ´leur controleur.php.</li>
+	  <li>controleur.php fait appel &agrave; la page Gestion_client.php et utilise la fonction inscript avec les paramÃ¨tres d'entrÃ©es rentr&eacute;es dans le formulaire d'inscription.</li>
 	  <li>La fonction commence par v&eacute;rifier les donn&eacute;es, tout d'abord en demandant si le nom existe d&eacute;j&agrave; ou non dans la base de donn&eacute;e.</li>
 	  <li>Dans notre cas, le nom entr&eacute; n'existe pas, la base ne renvoie aucun r&eacute;sultat.</li>
 	  <li>Demande &agrave; la base si l'email entr&eacute; existe d&eacute;j&agrave;.</li>
@@ -52,7 +52,7 @@ en rapport avec l'architecture
 	  <li>Insertion des donn&eacute;es dans la base de donn&eacute;es.</li>
 	  <li>Retour OK </li>
 	  <li>La fonction renvoie le nom, l'email et la photo de profil par defaut au controleur, celui-ci les enregistre comme variable de session.</li>
-	  <li>Le controleur renvoie vers la page accueil_util.php, qui est la page d'accueil après connexion.</li>
+	  <li>Le controleur renvoie vers la page accueil_util.php, qui est la page d'accueil aprÃ¨s connexion.</li>
        </ol>
     </td>
   </tr>
@@ -60,49 +60,49 @@ en rapport avec l'architecture
 
 <H1>
 2- Justification de l'architecture</H1>
-L'architecture trois tiers a été choisie pour plusieurs raisons non-fonctionnelles. 
+L'architecture trois tiers a Ã©tÃ© choisie pour plusieurs raisons non-fonctionnelles. 
     
     <ul><H2>2.1. Avantages : </H2>
-    L'architecture trois tiers a été choisie pour plusieurs raisons non-fonctionnelles.  
+    L'architecture trois tiers a Ã©tÃ© choisie pour plusieurs raisons non-fonctionnelles.  
     <div style= "text-align:justify">
     <ul><H3>2.1.1. Pratique</H3></ul>
-    Elle a été choisie tout d'abord pour les avantages pratiques qu'elle procure. Ces avantages sont principalement au nombre 3 : 
+    Elle a Ã©tÃ© choisie tout d'abord pour les avantages pratiques qu'elle procure. Ces avantages sont principalement au nombre 3 : 
     <ul>
-        <li>Les requêtes clients vers le serveur sont d'une plus grande flexibilité que dans celles de l'architecture 2-tiers basées sur le langage SQL.</li>
-        <li>Cette flexibilité permet d'envisager dans le cadre d'une architecture 3-tiers, une grande souplesse pour l'introduction ou la modification de toute nouvelle technologie. </li>
-        <li>Plus de flexibilité dans l'allocation des ressources, la portabilité du tiers serveur permet d'envisager une allocation et ou une modification dynamique aux grés des besoins évolutifs.</li>
+        <li>Les requÃªtes clients vers le serveur sont d'une plus grande flexibilitÃ© que dans celles de l'architecture 2-tiers basÃ©es sur le langage SQL.</li>
+        <li>Cette flexibilitÃ© permet d'envisager dans le cadre d'une architecture 3-tiers, une grande souplesse pour l'introduction ou la modification de toute nouvelle technologie. </li>
+        <li>Plus de flexibilitÃ© dans l'allocation des ressources, la portabilitÃ© du tiers serveur permet d'envisager une allocation et ou une modification dynamique aux grÃ©s des besoins Ã©volutifs.</li>
     </ul>
     <br>
 	
-	En effet, ce modèle d'architecture, qui a une structure modulaire, simplifie l'écriture, ainsi que la modification des scripts.  La séparation des modules permet, en cas de besoin de les modifier séparément
-	sans contraindre le fonctionnement d'autres fonctionnalités et l'intégrité des données. Par exemple, en cas de modifications de la structure de la base de données, sa séparation dans une couche séparée du 
-	restant des scripts, offre une facilité de modification sans toucher aux autres couches.
+	En effet, ce modÃ¨le d'architecture, qui a une structure modulaire, simplifie l'Ã©criture, ainsi que la modification des scripts.  La sÃ©paration des modules permet, en cas de besoin de les modifier sÃ©parÃ©ment
+	sans contraindre le fonctionnement d'autres fonctionnalitÃ©s et l'intÃ©gritÃ© des donnÃ©es. Par exemple, en cas de modifications de la structure de la base de donnÃ©es, sa sÃ©paration dans une couche sÃ©parÃ©e du 
+	restant des scripts, offre une facilitÃ© de modification sans toucher aux autres couches.
     <br>
-    De plus, ce modèle d'architecture permet la gestion précise de contraintes d'intégrité qui garantissent la cohérence des données. Les systèmes de gestion de
-	bases de données relationnelles (SGBDR) sont interfacés à l'aide d'un langage unique : le SQL (Structured Query Language). Ce langage permet d'effectuer
-	l'ensemble des opérations nécessaires sur la base de données. Ce langage permet également la gestion de transaction. Une transaction est définie par quatre
-	propriétés essentielles: Automaticité, Cohérence, Isolation et Durabilité (ACID). Ces propriétés garantissent l'intégrité des données dans un environnement
+    De plus, ce modÃ¨le d'architecture permet la gestion prÃ©cise de contraintes d'intÃ©gritÃ© qui garantissent la cohÃ©rence des donnÃ©es. Les systÃ¨mes de gestion de
+	bases de donnÃ©es relationnelles (SGBDR) sont interfacÃ©s Ã  l'aide d'un langage unique : le SQL (Structured Query Language). Ce langage permet d'effectuer
+	l'ensemble des opÃ©rations nÃ©cessaires sur la base de donnÃ©es. Ce langage permet Ã©galement la gestion de transaction. Une transaction est dÃ©finie par quatre
+	propriÃ©tÃ©s essentielles: AutomaticitÃ©, CohÃ©rence, Isolation et DurabilitÃ© (ACID). Ces propriÃ©tÃ©s garantissent l'intÃ©gritÃ© des donnÃ©es dans un environnement
 	multiutilisateurs.
 	
 	<ul><H3>2.1.2. Apprentissagee<H3></ul>
-	 Dans le cadre de la réalisation de notre projet, cette structure d'architecture nous a été fortement conseillée. Elle nous a permis d'orienter nos recherches et 
-	 d'organiser le travail nécessaire pour la conception du site Look&Note. De plus, cette architecture nous a permis d'avoir une vision globale et au même temps plus
-	 détaillée du fonctionnement d'un site internet.
+	 Dans le cadre de la rÃ©alisation de notre projet, cette structure d'architecture nous a Ã©tÃ© fortement conseillÃ©e. Elle nous a permis d'orienter nos recherches et 
+	 d'organiser le travail nÃ©cessaire pour la conception du site Look&Note. De plus, cette architecture nous a permis d'avoir une vision globale et au mÃªme temps plus
+	 dÃ©taillÃ©e du fonctionnement d'un site internet.
 
-	 <H2>2.2. Inconvénients : </H2>
-	 L'architecture client-serveur possède toutefois des inconvénients. Ces derniers sont au nombre de deux.
-	 <ul><H3>2.1.1. sécurité</H3></ul>
-	 La sécurité d'un système en architecture client-serveur est gérée au niveau du SGBDR. Celui-ci contrôle l'accès aux données en attribuant des autorisations
-	 d'accès aux différents utilisateurs du système. Le problème vient du fait que cette attribution de droit ne peut pas tenir compte des spécificités du 
-	 logiciel réalisé. Cette approche nécessite donc une gestion de sécurité plus importante.
+	 <H2>2.2. InconvÃ©nients : </H2>
+	 L'architecture client-serveur possÃ¨de toutefois des inconvÃ©nients. Ces derniers sont au nombre de deux.
+	 <ul><H3>2.1.1. sÃ©curitÃ©</H3></ul>
+	 La sÃ©curitÃ© d'un systÃ¨me en architecture client-serveur est gÃ©rÃ©e au niveau du SGBDR. Celui-ci contrÃ´le l'accÃ¨s aux donnÃ©es en attribuant des autorisations
+	 d'accÃ¨s aux diffÃ©rents utilisateurs du systÃ¨me. Le problÃ¨me vient du fait que cette attribution de droit ne peut pas tenir compte des spÃ©cificitÃ©s du 
+	 logiciel rÃ©alisÃ©. Cette approche nÃ©cessite donc une gestion de sÃ©curitÃ© plus importante.
 	  
 	  <ul><H3>2.2. Temps : </H3></ul>
-        L'acquisition de l'expertise de développement d'une architecture trois tiers nécessite un certain temps. Il s'agit donc du temps d'apprentissage. 
-		Dans le cadre de la réalisation de notre projet nous n'avons eu que 3 mois. Ainsi, nous avons été obligés de raccourcir ce temps. En effet, 
-		l'apprentissage de  l'expertise du développement d'une architecture trois tiers a été mélangé avec l'apprentissage d'autres connaissances informatiques. 
+        L'acquisition de l'expertise de dÃ©veloppement d'une architecture trois tiers nÃ©cessite un certain temps. Il s'agit donc du temps d'apprentissage. 
+		Dans le cadre de la rÃ©alisation de notre projet nous n'avons eu que 3 mois. Ainsi, nous avons Ã©tÃ© obligÃ©s de raccourcir ce temps. En effet, 
+		l'apprentissage de  l'expertise du dÃ©veloppement d'une architecture trois tiers a Ã©tÃ© mÃ©langÃ© avec l'apprentissage d'autres connaissances informatiques. 
         <br>
-        Ce sujet est souvent considéré comme beaucoup plus important par les entreprises car il est beaucoup plus visible. Le temps de développement d'une 
-		architecture 3-tiers semble plus élevé que pour celui de 2-tiers.
+        Ce sujet est souvent considÃ©rÃ© comme beaucoup plus important par les entreprises car il est beaucoup plus visible. Le temps de dÃ©veloppement d'une 
+		architecture 3-tiers semble plus Ã©levÃ© que pour celui de 2-tiers.
 		</ul>
 	 
 <H1>
@@ -122,7 +122,9 @@ L'architecture trois tiers a été choisie pour plusieurs raisons non-fonctionnell
       <li>aPropos.html</li>
       <li>Contact.html</li>
       <li></li>
-      <li></li>
+      <li>accueil_util.php</li>
+      <li>publ_photo.php</li>
+      <li>ami.php</li>
     </ul>
     <li class="l2">CSS</li>
     <li class="l2">Image</li>
@@ -131,20 +133,35 @@ L'architecture trois tiers a été choisie pour plusieurs raisons non-fonctionnell
   <li class="l1">M&eacute;tier</li>
   <ol>
     <li class="l2">Gestion_bdd.php</li>
-    Regroupe les fonctions de connexion, d&eacute;connexion, d'inscription et de désinscription du client.<br>
+    Regroupe les fonctions de connexion au serveur et de connexion &agrave; la base de onn&eacute;es. Ces fonctions permettent d'&eacute;viter de r&eacute;p&eacute;ter la demande de connexion &agrave; chaque fois qu'on demande la connexion au serveur et d'assurer plus de s&eacute;rit&eacute; vis-&agrave;-vis des param&egrave;tres du serveur (nom de serveur, nom d'utilisateur, mot de passe, nom de la base).<br>
+    <br>
     <li class="l2">Gestion_client.php</li>
-    Regroupe les fonctions de connexion, d&eacute;connexion, d'inscription et de désinscription du client.<br>
-    La fonction d'inscription (inscript($nom,$email,$mdp)) est appel&eacute;e lorsque le formulaire d'inscription sur la page d'accueil est rempli. Elle prend en paramètres les champs de ce formulaire qui sont : le nom que souhaite avoir l'utilisateur, une adresse email et un mot de passe. La fonction v&eacute;rifie tout d'abord la validit&eacute; des donn&eacute;es entr&eacute;es, si elles sont vides ou d&eacute;j&agrave; utilis&eacute;es par un autre utilisateur (dans le cas du nom et de l'email) en interrogeant la base de donn&eacute;es. Si tout est bon, un nouvel utilisateur est cr&eacute;&eacute; dans la base de donn&eacute;es avec ces param&egrave;tres ainsi qu'un dossier personnel portant le nom rentr&eacute;, dans le dossier Donn&eacute;es, qui servira &agrave; stocker ses photos; l'utilisateur est envoy&eacute; sur la page d'accueil d'utilisateur (accueil_util.php). Sinon, l'utilisateur restera sur la page d'accueil du site (accueil.php) o&ugrave; un (ou des) message(s) d'erreur(s) seront affich&eacute;s pr&egrave;s du formulaire d'inscription.<br>
-    La fonction de connexion (connex($email,$mdp)) est appel&eacute;e lorsque le formulaire de connexion sur la page d'accueil est rempli. Elle prend en paramètres les champs de ce formulaire qui sont : l'email et un mot de passe. La fonction v&eacute;rifie tout d'abord la validit&eacute; des donn&eacute;es entr&eacute;es, si elles sont vides ou d&eacute;j&agrave; utilis&eacute;es par un autre utilisateur (dans le cas du nom et de l'email) en interrogeant la base de donn&eacute;es. Si tout est bon, l'utilisateur est envoy&eacute; sur la page d'accueil d'utilisateur (accueil_util.php), sinon il restera sur la page d'accueil (accueil.php) o&ugrave; un (ou des) message(s) d'erreur(s) seront affich&eacute;s pr&egrave;s du formulaire de connexion.<br>
-    La fonction de d&eacute;connexion est appel&eacute;e lorsque . <br>
-    La fonction de d&eacute;sinscription est appel&eacute;e lorsque . <br>
-    <li class="l2">Gestion_client.php</li>
-    <li class="l2">Gestion_client.php</li>
-    <li class="l2">Gestion_client.php</li>
+    Regroupe les fonctions de connexion, d&eacute;connexion, d'inscription et de dÃ©sinscription du client.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La fonction d'inscription est appel&eacute;e lorsque le formulaire d'inscription sur la page d'accueil est rempli. Elle prend en paramÃ¨tres les champs de ce formulaire qui sont : le nom que souhaite avoir l'utilisateur, une adresse email et un mot de passe. La fonction v&eacute;rifie tout d'abord la validit&eacute; des donn&eacute;es entr&eacute;es, si elles sont vides ou d&eacute;j&agrave; utilis&eacute;es par un autre utilisateur (dans le cas du nom et de l'email) en interrogeant la base de donn&eacute;es. Si tout est bon, un nouvel utilisateur est cr&eacute;&eacute; dans la base de donn&eacute;es avec ces param&egrave;tres ainsi qu'un dossier personnel portant le nom rentr&eacute;, dans le dossier Donn&eacute;es, qui servira &agrave; stocker ses photos; l'utilisateur est envoy&eacute; sur la page d'accueil d'utilisateur (accueil_util.php). Sinon, l'utilisateur restera sur la page d'accueil du site (accueil.php) o&ugrave; un (ou des) message(s) d'erreur(s) seront affich&eacute;s pr&egrave;s du formulaire d'inscription.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La fonction de connexion est appel&eacute;e lorsque le formulaire de connexion sur la page d'accueil est rempli. Elle prend en paramÃ¨tres les champs de ce formulaire qui sont : l'email et un mot de passe. La fonction v&eacute;rifie tout d'abord la validit&eacute; des donn&eacute;es entr&eacute;es, si elles sont vides ou d&eacute;j&agrave; utilis&eacute;es par un autre utilisateur (dans le cas du nom et de l'email) en interrogeant la base de donn&eacute;es. Si tout est bon, l'utilisateur est envoy&eacute; sur la page d'accueil d'utilisateur (accueil_util.php), sinon il restera sur la page d'accueil (accueil.php) o&ugrave; un (ou des) message(s) d'erreur(s) seront affich&eacute;s pr&egrave;s du formulaire de connexion.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La fonction de d&eacute;connexion est appel&eacute;e lorsque l'utilisateur appuie sur le bouton de d&eacute;connexion, elle d&eacute;truit la session en cours et am&egrave;ne l'utilisateur sur la page d'accueil du site. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La fonction de d&eacute;sinscription est appel&eacute;e lorsque l'utilisateur appuie sur le bouton d&eacute;sinscription, la fonction d&eacute;truit alors toutes les r&eacute;f&eacute;rences de l'utilisateur dans la base de donn&eacute;es et son dossier personnel cr&eacute;&eacute; lors de l'inscription. <br>
+<br>
+    <li class="l2">Gestion_photo.php</li>
+    Regroupe les fonctions relatives &agrave; la gestion des photos.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La fonction de publication de photos    
+    <br>
+<br>    
+    <li class="l2">Gestion_file.php</li>
+    Regroupe les fonctions relatives &agrave; la gestion des files d'actualit&eacute;s pr&eacute;s sur la page d'accueil de l'utilisateur.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La premi&egrave;re file (tout &agrave; gauche) est la file d'actualit&eacute;s des amis de l'utilisateur. La fonction li&eacute;e retourne toutes les publications effectu&eacute;es par les amis de l'utilisateur dans l'ordre chronologique de publication.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La file centrale est la file d'actualit&eacute;s communes. La fonction li&eacute;e retourne toutes les publications effectu&eacute;es dans l'ordre chronologique de publication.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La troisi&egrave;me file (tout &agrave; droite) est la file d'actualit&eacute;s de l'utilisateur lui-m&ecirc;me. La fonction li&eacute;e retourne toutes les publications effectu&eacute;es par l'utilisateur dans l'ordre chronologique.<br>
+<br>    
+    <li class="l2">Gestion_recherche.php</li>
+<br>    
   </ol>
 <br>
   <li class="l1">Donn&eacute;es</li>
   <ol>
+    <li class="l2">Dossier personnel de l'utilisateur</li>
+    Cr&eacute;&eacute; lors de l'inscription de lutilisateur, il porte le nom de l'utilisateur et regroupe toutes les photos post&eacute;es celui-ci.<br>
+    <br>
     <li class="l2"></li>
     <li class="l2">Base de donn&eacute;es</li>
     <table border=1px align="center">
