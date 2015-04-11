@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset = "utf-8" />
-		<link rel="stylesheet" href="../CSS/styleacceuil.css" />
+		<link rel="stylesheet" href="../CSS/enregistrement.css" />
 		<title>Evaluez vous de près</title>
 	</head>
 	

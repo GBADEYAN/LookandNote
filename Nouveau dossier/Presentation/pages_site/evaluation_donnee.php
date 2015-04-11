@@ -12,7 +12,7 @@
 	<nav>
 	<div id = "boutons">
 		<ul id = "menu">
-			<li><a href="controleur.php?page=a">Accueil</a></li>
+			<li><a href="controleur.php?page=a">Acceuil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
 			<li><a href="controleur.php?page=p">Mon Profil</a></li>
 			<li><a href="#">Mes Notes</a></li>
@@ -29,21 +29,13 @@
 		</ul>
 	</div> 
     </nav>
+<br><br>
+<a href="controleur.php?page=er"> Notes re&ccedil;ues </a>
+&nbsp;&nbsp;&nbsp;
+<a href="controleur.php?page=ed"> Notes donn&eacute;es </a>
 
-<form action="controleur.php" method="post">
-	Rechercher un ami:<br>
-	<input type="search" name="rech_ami">
-</form>	
-<br>
-<?php
-if(isset($pp)){
-echo $pp;
-}
-if(isset($ppp)){
-echo $ppp;
-}
-?>
+<?php echo $nd; ?>
 
-	</body>
+</body>
 
 </html>

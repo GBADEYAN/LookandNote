@@ -24,7 +24,7 @@ if (mysql_num_rows($req) == 0) {
 }
 echo "<br><table border=1><tr> <td> id_util </td><td> nom </td> <td> email </td><td> photo </td><td>mdp</td> </tr>";
        while($row=mysql_fetch_assoc($req)){
-         echo "<tr><td>".$row["id_util"]."</td><td>".$row["nom"]."</td><td>".$row["email"]."</td><td><img src=\"".$row["photo_profil"]."\"></td><td>".$row["mdp"]."</td></tr>";
+         echo "<tr><td>".$row["id_util"]."</td><td>".$row["nom"]."</td><td>".$row["email"]."</td><td><img src=\"".$row["photo_profil"]."\"></td><td>".$row["photo_profil"]."</td><td>".$row["mdp"]."</td></tr>";
        }
        echo "</table><br><br>";
 

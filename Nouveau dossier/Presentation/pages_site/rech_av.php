@@ -12,7 +12,7 @@
 	<nav>
 	<div id = "boutons">
 		<ul id = "menu">
-			<li><a href="controleur.php?page=a">Accueil</a></li>
+			<li><a href="controleur.php?page=a">Acceuil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
 			<li><a href="controleur.php?page=p">Mon Profil</a></li>
 			<li><a href="#">Mes Notes</a></li>
@@ -30,20 +30,24 @@
 	</div> 
     </nav>
 
-<form action="controleur.php" method="post">
-	Rechercher un ami:<br>
-	<input type="search" name="rech_ami">
-</form>	
-<br>
-<?php
-if(isset($pp)){
-echo $pp;
-}
-if(isset($ppp)){
-echo $ppp;
-}
-?>
+<br><br><br>
+<form method="post">
+<input type="text" name="mot" ><br>
+Chercher dans : <br>
+<input type="checkbox" name="t" value="titre">Titre photo<br>
+<input type="checkbox" name="n" value="nom">Nom utilisateur<br>
+<input type="checkbox" name="c" value="critere">Critere<br>
+<input type="checkbox" name="co" value="comm">Commentaire<br>
+<input type="checkbox" name="a" value="ami">Ami<br> 
+Date : <br>
+<input type="radio" name="date-rgt" value="ASC">Croissant<br>
+<input type="radio" name="date-rgt" value="DESC">Decroissant<br>
+<input type="submit" name="submit_rech_av" value="rechercher">
 
-	</body>
+
+
+</form>
+
+</body>
 
 </html>

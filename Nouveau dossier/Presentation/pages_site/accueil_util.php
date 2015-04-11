@@ -12,22 +12,20 @@
 	<nav>
 	<div id = "boutons">
 		<ul id = "menu">
-			<li><a href="controleur.php?page=a">Accueil</a></li>
+			<li><a href="controleur.php?page=a">Acceuil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
-			<li><a href="#">Mon Profil</a></li>
+			<li><a href="controleur.php?page=p">Mon Profil</a></li>
 			<li><a href="#">Mes Notes</a></li>
 			<li><a href="controleur.php?page=c">Amis</a></li>
 			<div id = "rechavancée">
-				<li><a href="#">Recherche avancée</a></li>
-				<li><input type = "text" name ="Recherche avancée" style = "margin-left: 20px;"/></li>
+				<li><a href="controleur.php?page=r">Recherche avancée</a></li>
+				<li><form method="post" action="controleur.php"><input type = "text" name ="Rech" style = "margin-left: 20px;"/></form></li>
 			</div>
 		</ul>
-<br><a href = "controleur.php?page=ZZ" title = "se désinscrire" style = "margin-left: 90px;">Se désinscrire</a>
 		<ul id = "Bonjour">
 			<li><b>Bonjour <?php echo $_SESSION["nom"];?></b></li>
-			<li><a href = "#" title ="Télcharger votre Photo de Profil"><img src = "../Image/photoprofil.png"/></a></li>
-			<li><a href = "controleur.php?page=z" title = "déconnecter" style = "margin-left: 90px;">Déconnexion</a></li>			
-			
+			<li><a href = "#" title ="Télcharger votre Photo de Profil"><img src = "<?php echo $_SESSION["photo_p"] ?>" width=45%></a></li>
+			<li><a href = "accueil.php" title = "déconnecter" style = "margin-left: 90px;">Déconnexion</a></li>
 		</ul>
 	</div> 
     </nav>
@@ -54,24 +52,9 @@
 		</div>
 	</div>
 	
+<?php if(isset($a)){echo $a;} ?>
 	<div id = "pagemilieu">
-		<div id = "coordonnees">
-			<a href = "#"><img src = "../Image/util1.png"></a>
-			<a href = "#"><p>Nom de l'utilisateur</p></a><br>
-		</div>
-		<div class = "pub">
-		<h2>Titre Photo</h2>
-		<img src = "../Image/pub1util1.png">
-			<div class = "boutonspub">
-				<input type = "submit" value = "Noter"id = "Noter"/>
-				<input type = "submit" value = "Commenter"id = "Commenter"/>
-				<input type = "submit" value = "Partager" id = "partager"/>
-			</div>
-		<p style = "text-align:right; line-height: 200px;font-weight: bold;">Moyenne des notes: NOTE</p>	
 
-		
-	
-		</div>
 		<?php echo $FC; ?>
 	
 	</div>
