@@ -8,8 +8,8 @@ function publ_photo($fichier,$taille,$type,$nom_fichier,$tmp,$titre,$date,$id,$n
 	$dir_d = "../../Donnees/";
 
 	$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
-	//1. strrchr renvoie l'extension avec le point (Â« . Â»).
-	//2. substr(chaine,1) ignore le premier caractÃ¨re de chaine.
+	//1. strrchr renvoie l'extension avec le point (« . »).
+	//2. substr(chaine,1) ignore le premier caractère de chaine.
 	//3. strtolower met l'extension en minuscules.
 	if(!empty($fichier) && !empty($taille) && !empty($type) &&!empty($tmp)){
 		$extension_upload = strtolower(  substr(  strrchr($nom_fichier, '.')  ,1)  );
@@ -53,13 +53,13 @@ $i++;
 			$sql="insert into Photo (id_post,titre,date_publ,lien_photo) values (\"".$id."\",\"".$titre."\",\"".$date."\",\"".$dir_d.$nom."/".$nom_fichier."\")";
 			$req=mysql_query($sql,$connex);
 	   		if(!$req){//--5
-           			Die("Requete invalide:".mysqli_connect_error());
+           			Die("Requete invalide dfg:".mysqli_connect_error().$id." ".$titre." ".$date." ".$dir_d.$nom."/".$nom_fichier);
        			}
 			else { 
 				$sql0="select num_photo from Photo where id_post=\"".$id."\" and titre=\"".$titre."\" and date_publ=\"".$date."\"";
 				$req0=mysql_query($sql0,$connex);
 				if(!$req0){//--5
-           			Die("Requete invalide:".mysqli_connect_error());
+           			Die("Requete invalide jety:".mysqli_connect_error());
        				}
 				else {
 					$row=mysql_fetch_assoc($req0);
@@ -103,7 +103,7 @@ function renom_photo($t2,$lien){
 //56---------Supprimer des photos perso------------
 function supp_photo($lien){		
 	$connex = connexion_bdd();
-$num_photo=numph_lien($lien);
+    $num_photo=numph_lien($lien);
 $sql01="delete from Commentaire where num_photo=\"".$num_photo."\"";
 $req01 = mysql_query($sql01,$connex);
 	if(!$req01){
@@ -136,13 +136,9 @@ $req03 = mysql_query($sql03,$connex);
 //---------Ajouter des criteres------------
 function ajout_critere($c2,$lien){
 	$connex = connexion_bdd();
-	$sql="select num_photo from Photo where lien_photo=\"".$lien."\"";
-	$req = mysql_query($sql,$connex);
-	if(!$req){
-		Die("Pb avec la requete ".mysql_error());
-	}
-	$row=mysql_fetch_assoc($req);
-	$sql1="insert into Critere (description) values(\"".$c."\") where num_photo=\"".$row["num_photo"]."\"";
+	$num_photo=numph_lien($lien);
+
+	$sql1="insert into Critere (description,num_photo) values(\"".$c2."\",\"".$num_photo."\")";
 	$req1=mysql_query($sql1,$connex);
 	if(!$req1){
 		Die("Pb avec la requete ".mysql_error());
@@ -154,43 +150,87 @@ function ajout_critere($c2,$lien){
 
 //56---------Affichage des photos perso------------
 function aff_photo_perso($id){
-	$connex = connexion_bdd();
 	$pp="<h3>Photos publi&eacute;es : </h3>";
 
-	$sql = "select * from Photo where id_post=\"".$id."\"";
-	$req = mysql_query($sql,$connex);
-	if(!$req){Die("Pb avec la requete ".mysql_error());}
-	if (mysql_num_rows($req) == 0) {
-	   $pp=$pp."Pas de photos publi&eacute;es actuellement.";
-	}
+	$ens_photo=photo_perso($id);
+	if(count($ens_photo)==0){$pp=$pp."Pas de photos publi&eacute;es actuellement.";}
 	else{
 		
-		
-
-		$pp =$pp. "<br><table border=1><tr> <td> id_post </td><td> titre </td> <td> date </td><td> photo </td><td>lien</td><td>renommer</td><td>Critere</td><td>Ajouter un critere</td><td>Supprimer</td></tr>";
-        	while($row=mysql_fetch_assoc($req)){
-			$sql0="select * from Photo,Critere where id_post=\"".$id."\" and Critere.num_photo=Photo.num_photo and Photo.num_photo=\"".$row["num_photo"]."\"";
-			$req0=mysql_query($sql0,$connex);
-			if(!$req0){Die("Pb avec la requete ".mysql_error());}
-
-        		 $pp=$pp. "<tr><td>".$row["id_post"]."</td>
-					<td>".$row["titre"]."</td><td>".$row["date_publ"]."</td>
-					<td><img src=\"".$row["lien_photo"]."\" width=15%></td>
-					<td>".$row["lien_photo"]."</td>
-					<td><form method=\"post\"><input type=\"text\" name=\"t2\"><input type=\"hidden\" name=\"lien_mv\" value=\"".$row["lien_photo"]."\"><input type=\"submit\" name=\"submit_t2\" value=\"Renommer\"></form></td><td><ul>";
-			$i=1;
-			while($row0=mysql_fetch_assoc($req0)){
-			if($i>1){
-			$pp=$pp."<li>".$row0["description"]."</li>";
+		$pp=$pp."<table >\n";$k=5;$m=0;
+		for($j=0;$j<(2*$k*(1+count($ens_photo)/($k+1)));$j=$j+$k){
+			$pp=$pp."<tr>\n";//167
+			if($j%($k*2)==0){
+				for($i=$j/2;$i<($j/2)+$k && $i<count($ens_photo);$i++){
+					$titre=$ens_photo[$i][1];
+					if($m<1){$pp=$pp."<td> </td>";$m++;$i--;}
+					else{$pp=$pp."<td align=center width=15px>". $titre." </td>";}
+				}
 			}
-			$i++;
+			else{
+				for($i=($j-$k)/2;$i<(($j-$k)/2)+$k && $i<count($ens_photo);$i++){
+					$lien=$ens_photo[$i][0];		
+					if($m<2){$pp=$pp."<td align=center><a href=\"controleur.php?page=b\"><input type=\"button\" name=\"ajoutphoto\" value=\"Publier\"></a></td>";$m++;$i--;}
+					else{
+					     $pp=$pp."<td align=center width=20%><img src=\"".$lien."\" width=80%><br>
+					 <form method=\"post\"><input type=\"text\" name=\"t2\"><input type=\"hidden\" name=\"lien_mv\" value=\"".$lien."\"><input type=\"submit\" name=\"submit_t2\" value=\"Renommer\"></form><br>\n
+                  <form method=\"post\">
+<input type=\"hidden\" name=\"lien_rm\" value=\"".$lien."\"><input type=\"submit\"  value=\"Supprimer\" name=\"submit_rm\"></form>\n (*) Attention ceci est definitif!
+</td>";
+                        }
+				}
 			}
-			$pp=$pp."</ul></td><td><form method=\"post\"><input type=\"text\" name=\"c2\"><input type=\"hidden\" name=\"lien_mv\" value=\"".$row["lien_photo"]."\"><input type=\"submit\" name=\"submit_c2\" value=\"Ajouter\"></form></td>
-					<td><form method=\"post\"><input type=\"hidden\" name=\"lien_rm\" value=\"".$row["lien_photo"]."\"><input type=\"submit\" name=\"submit_rm\" value=\"Supprimer\"></form>\n (*) Attention ceci est definitif!</td></tr>";        
+			$pp=$pp."</tr>\n";
 		}
-        $pp=$pp. "</table><br><br>";
+		$pp=$pp."</table>\n";
 	}
 	return $pp;
 }
 
+
+
+//56---------Modifier photo profil------------
+function modif_photop($fichier,$taille,$type,$nom_fichier,$tmp,$id,$nom){
+	$msg="";$msg2="";$msg3="";
+	$dir_d = "../../Donnees/";
+
+	$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+	//1. strrchr renvoie l'extension avec le point (« . »).
+	//2. substr(chaine,1) ignore le premier caractère de chaine.
+	//3. strtolower met l'extension en minuscules.
+	if(!empty($fichier) && !empty($taille) && !empty($type) &&!empty($tmp)){
+		$extension_upload = strtolower(  substr(  strrchr($nom_fichier, '.')  ,1)  );
+		if ( !in_array($extension_upload,$extensions_valides) ){
+		 	$msg= "(*) Extension incorrecte";
+		}
+		$maxwidth=4000;
+		$maxheight=4000;
+		$image_sizes = getimagesize($tmp);
+		if ($image_sizes[0] > $maxwidth OR $image_sizes[1] > $maxheight){
+			 $msg = "(*) Image trop grande";
+		}
+	}
+	else{
+		$msg="(*) fichier photo manquant";
+	}
+
+	if(empty($msg)){
+		$connex=connexion_bdd();
+		$CH=$dir_d.$nom."/".$nom_fichier;
+		//$sql="select * from Utilisateur where id_util=\"".$_SESSION["id"]."\"";
+    	   $sql="update Utilisateur set photo_profil=\"".$CH."\" where id_util=\"".$_SESSION["id"]."\"";
+			$req=mysql_query($sql,$connex);
+	   		if(!$req){
+           			Die("Requete invalide dfg:".mysqli_connect_error());
+       			}
+			else { 
+			$res=move_uploaded_file($tmp,$CH);
+				if($res){$_SESSION["photo_p"]=$CH;}
+				else{Die("erreur");}		
+			}
+		}
+		return $msg;	
+}
+
+
 ?>
+

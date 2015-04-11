@@ -6,14 +6,14 @@ require_once("Gestion_bdd.php");
 function file_ami($id){
 	$pp="";$A=array();
 	$IA=rech_ami_util($id);
-	if(empty($IA)){
+	if(count($IA)==0){
 		$pp=$pp."Pas d'ami actuellement";
 	}
 	else{
 		$connex=connexion_bdd();
 		$j=0;
 		for($i=0;$i<count($IA);$i++){
-			$sql="select * from Photo,Utilisateur where id_post=id_util and id_post=\"".$IA[$i]."\"";
+			$sql="select * from Photo,Utilisateur where id_post=id_util and id_post=\"".$IA[$i][0]."\"";
 			$req = mysql_query($sql,$connex);
 			if(!$req){Die("Pb avec la requete ".mysql_error());}
 			else{				
@@ -54,8 +54,8 @@ function file_perso($id){
 	else{
         	while($row=mysql_fetch_assoc($req)){
         		 $A[$j]=array($row["num_photo"],$row["titre"],$row["date_publ"],$row["lien_photo"]);
-			       $j++;
-				}
+		   $j++;
+		  }
       			
 		
 		
@@ -76,7 +76,7 @@ function file_perso($id){
 
 //56---------file commune centrale------------
 function file_centrale($id){
-$pp="";
+	$pp="";
 	$A=array();$j=0;
 	$connex=connexion_bdd();
 			
@@ -90,7 +90,7 @@ $pp="";
         	while($row=mysql_fetch_assoc($req)){
         		 $A[$j]=array($row["num_photo"],$row["titre"],$row["date_publ"],$row["lien_photo"],$row["nom"],$row["photo_profil"]);
 			       $j++;
-				}		
+		}		
 		$B=array();
 		foreach($A as &$ma){
 			$B[]=&$ma[0];
@@ -98,9 +98,8 @@ $pp="";
 		array_multisort($B,SORT_DESC,$A);			
 
 		foreach($A as &$ma){
-			//$pp=$pp."publi&eacute; :<br>".$ma[1]."<br><img src=\"".$ma[3]."\" width=15%>"."<br>le ".$ma[2]."<br>\n------------<br>\n"; 
-$pp=$pp."	<div id = \"coordonnees\">\n
-			<a href = \"#\"><img src = \"".$ma[5]."\"></a>
+		    $pp=$pp."	<div id = \"coordonnees\">\n
+			<a href = \"#\"><img src = \"".$ma[5]."\" width=10%></a>
 			<a href = \"#\"><p>$ma[4]</p><br></a>\n			
 		</div>\n
 		<p><br>le ".$ma[2]."</p><br>\n
@@ -108,9 +107,12 @@ $pp=$pp."	<div id = \"coordonnees\">\n
 		<h2>$ma[1]</h2>\n
 		<img src = \"".$ma[3]."\" width=50%>\n
 			<div class = \"boutonspub\">\n
+				<form action=\"\" method=\"post\">
+				<input type=\"hidden\" value=\"$ma[3]\" name=\"lien_photo\">\n
 				<input type = \"submit\" value = \"Noter\"id = \"Noter\"/>\n
 				<input type = \"submit\" value = \"Commenter\"id = \"Commenter\"/>\n
 				<input type = \"submit\" value = \"Partager\" id = \"partager\"/>\n
+				</form>
 			</div>\n
 		</div>\n<br>";
 		}
@@ -119,6 +121,6 @@ $pp=$pp."	<div id = \"coordonnees\">\n
 }
 
 
-//56---------Affichage des photos perso------------
+//56---------   ------------
 
 ?>

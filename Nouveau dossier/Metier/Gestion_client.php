@@ -20,8 +20,8 @@ function inscript($nom,$email,$mdp){
        $msg2 = "(*) email obligatoire";
     }//--2
   /*22mdp obligatoire*/
-    if(strlen($mdp)<1 || (!isset($mdp))){//--3	
-       $msg3 = "(*) mdp obligatoire";
+    if(strlen($mdp)<7 || (!isset($mdp))){//--3	
+       $msg3 = "(*) mdp de 6 caracteres minimum obligatoire";
     }//--3
     $mdp=md5($mdp);
      
@@ -49,16 +49,22 @@ function inscript($nom,$email,$mdp){
                die("Echec insertion");
            }//--10
            else{//--11
-               mkdir($dir_d.$nomi);  if(is_dir($dir_d.$nomi)){echo "creation dossier ok";}             
-               $row=mysql_fetch_assoc($req);
-              return array($row["id_util"],$nomi,$emaili,"../Image/photoprofil.png");
+               mkdir($dir_d.$nomi);  if(is_dir($dir_d.$nomi)){echo "creation dossier ok";} 
+		$id=id_nom($nomi);
+              return array($id,$nomi,$emaili,"../Image/photoprofil.png");
            } //--11    
        }//--9
        else{
+           if(!isset($msg1)){ $msg1="";}
+           if(!isset($msg2)){ $msg2="";}
+           if(!isset($msg3)){ $msg3="";}  
            return array($msg1,$msg2,"");
        }    	      
     }//--4
     else{//--12
+           if(!isset($msg1)){ $msg1="";}
+           if(!isset($msg2)){ $msg2="";}
+           if(!isset($msg3)){ $msg3="";}         
            return array($msg1,$msg2,$msg3);
     }//--12		 
 
@@ -91,9 +97,9 @@ function desinscript($nom){//--1
 //Suppression dans la BDD
 //toutes les photos postees
 
-	$ens_photo=lienphoto_perso($ID);
-	for($i=0;$i<count($ens_photo);$i++){
-		supp_photo($ens_photo[$i]);
+	$ens_photo=photo_perso($ID); //(lien,titre,date)
+	for($i=0;$i<count($ens_photo);$i++){echo $ens_photo[$i][0];
+		supp_photo($ens_photo[$i][0]);
 	}
 //tous les comm, notes donnes par l'utilisateur
 	$sql01="delete from Commentaire where id_comm=\"".$ID."\"";
@@ -116,8 +122,8 @@ function desinscript($nom){//--1
 	$req04=mysql_query($sql04,$connex);
 	if(!$req04){
 		Die("Requete invalide:".mysqli_connect_error());
-	}
-    session_destroy();
+	}//*/
+    //session_destroy();
 }//--1
 
 
