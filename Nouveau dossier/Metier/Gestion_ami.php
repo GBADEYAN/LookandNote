@@ -13,6 +13,22 @@ function ajout_ami($id,$id_ami){
 	return "";
 }
 
+//---------Suppression d'amis------------
+function supp_ami($id,$id_ami){
+	$connex=connexion_bdd();
+	$sql="delete from Ami where id_util1=\"".$id."\" and id_util2=\"".$id_ami."\"";
+	$req=mysql_query($sql,$connex);
+	   		if(!$req){
+           			Die("Requete invalide df:".mysqli_connect_error());
+       			}
+	$sql="delete from Ami where id_util2=\"".$id."\" and id_util1=\"".$id_ami."\"";
+	$req=mysql_query($sql,$connex);
+	   		if(!$req){
+           			Die("Requete invalide df:".mysqli_connect_error());
+       			}
+	return "";
+}
+
 //---------Deja ami----------------
 function dejaAmi($id1,$id2){
 	$b="false";	
@@ -43,7 +59,9 @@ function aff_ami_perso($id){
 			else{
 				for($i=($j-$k)/2;$i<(($j-$k)/2)+$k && $i<count($A);$i++){
 					$photo=$A[$i][2];			
-					$pp=$pp."<td align=center width=20px><img src=\"".$photo."\" width=80%> </td>";
+					$pp=$pp."<td align=center width=20px><img src=\"".$photo."\" width=80%>
+					ami <form method=\"post\"><input type=\"hidden\" name=\"id_ami\" value=\"".$A[$i][0]."\"><input type=\"submit\" name=\"supp_ami\" value=\"Ne plus etre ami\"></form>
+				</td>";
 				}
 			}
 			$pp=$pp."</tr>\n";
@@ -77,9 +95,9 @@ function aff_ami_pot($nom_ami){
 					 $a="ami";
 				}
 				else{
-					 $a="<form method=\"post\"><input type=\"text\" name=\"id_ami\" value=\"".$row["id_util"]."\"><input type=\"submit\" name=\"ajout_ami\" value=\"Ajouter comme ami\"></form>";
+					 $a="<form method=\"post\"><input type=\"hidden\" name=\"id_ami\" value=\"".$row["id_util"]."\"><input type=\"submit\" name=\"ajout_ami\" value=\"Ajouter comme ami\"></form>";
 				}
-         			$pp=$pp. "<tr><td>".$row["id_util"]."</td><td>".$row["nom"]."</td><td>".$row["email"]."</td><td><img src=\"".$row["photo_profil"]."\" width=10%></td><td>".$a."</td></tr>";
+         			$pp=$pp. "<tr><td>".$row["id_util"]."</td><td>".$row["nom"]."</td><td>".$row["email"]."</td><td><img src=\"".$row["photo_profil"]."\" width=10%></td><td align=center>".$a."</td></tr>";
        			}
 		}
        		$pp=$pp. "</table><br><br>";

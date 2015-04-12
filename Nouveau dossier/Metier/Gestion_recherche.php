@@ -150,6 +150,7 @@ function photo_perso($id){
 		$ens_photo[$i][0]=$row["lien_photo"];
 		$ens_photo[$i][1]=$row["titre"];
 		$ens_photo[$i][2]=$row["date_publ"];
+		$ens_photo[$i][3]=$row["num_photo"];
 		$i++;
 	}
 	return $ens_photo;

@@ -156,7 +156,7 @@ function aff_photo_perso($id){
 	if(count($ens_photo)==0){$pp=$pp."Pas de photos publi&eacute;es actuellement.";}
 	else{
 		
-		$pp=$pp."<table >\n";$k=5;$m=0;
+		$pp=$pp."<table >\n";$k=4;$m=0;
 		for($j=0;$j<(2*$k*(1+count($ens_photo)/($k+1)));$j=$j+$k){
 			$pp=$pp."<tr>\n";//167
 			if($j%($k*2)==0){

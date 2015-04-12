@@ -38,8 +38,7 @@ function deja_commente($id,$num_photo){
 //-------------Affichage page note ou peut noter------------
 function aff_photo_a_noter($lien_photo){
 	$num_photo=numph_lien($lien_photo);
-	$critere=crit_photo($num_photo);	//num_crit,desc
-	
+	$critere=crit_photo($num_photo);	//num_crit,desc	
 	$ph=info_photo($num_photo);
 	$id_post=$ph[0];
 	$titre=$ph[2];
@@ -47,16 +46,12 @@ function aff_photo_a_noter($lien_photo){
 	$u=info_util($id_post);
 	$nom_post=$u[0];
 	$photop_post=$u[1];
-	
-	
-//21
 	$pp="<p><br><table  width=80% align=center>\n";
 	$pp=$pp."<tr>\n<td rowspan=3 width=10%><img src=\"".$photop_post."\" alt=\"photop\" width=100%></td>\n";
 	$pp=$pp."<td width=80% rowspan=2> ".$nom_post."<br>a publi&eacute; le ".$date." </td>\n</tr>\n";
 	$pp=$pp."<tr></tr><tr></tr>\n";
 	$pp=$pp."<tr>\n<td align=center colspan=10>".$titre."</td>\n</tr>\n";
 	$pp=$pp."<tr>\n<td align=center colspan=10><img src=\"".$lien_photo."\" alt=\"photo\" width=50%></td>\n</tr>\n</table>\n";
-	
 	$pp=$pp."\n<table border=1px width=60% align=center>\n";
 	for($i=1;$i<count($critere);$i++){
 	    $deja_note=deja_note($_SESSION["id"],$critere[$i][0]);
@@ -69,7 +64,7 @@ function aff_photo_a_noter($lien_photo){
 		$pp=$pp."<td width=5%><form method=\"post\" action=\"controleur.php\"><input type=\"hidden\" name=\"crit\" value=\"".$critere[$i][0]."\"><input type=\"hidden\" name=\"lien_phot\" value=\"".$lien_photo."\"><input type=\"submit\" name=\"s5\" value=\"5\"></form>\n</td>\n";
 		}
 		else{
-		$pp=$pp."<td align=center>".$deja_note."</td><td colspan=5 align=center><form method=\"post\" action=\"controleur.php\"><input type=\"hidden\" name=\"crit\" value=\"".$num_critere[$i]."\"><input type=\"hidden\" name=\"lien_phot\" value=\"".$lien_photo."\">
+		$pp=$pp."<td align=center>".$deja_note."</td><td colspan=5 align=center><form method=\"post\" action=\"controleur.php\"><input type=\"hidden\" name=\"crit\" value=\"".$critere[$i][0]."\"><input type=\"hidden\" name=\"lien_phot\" value=\"".$lien_photo."\">
 		<input type=\"submit\" name=\"sub_supp_note\" value=\"Modifier\"></form></td>\n";
 		}		
 	}
@@ -88,10 +83,8 @@ function aff_photo_a_noter($lien_photo){
 	if(!empty(deja_commente($_SESSION["id"],$num_photo))){
 	   $pp=$pp."<td colspan=5>Votre commentaire : <br></td>\n</tr>\n<tr>\n<td align=center colspan=5>".deja_commente($_SESSION["id"],$num_photo)."</td>\n";
 	}	
-	
 	$pp=$pp."</tr>\n</table></p>";
-    return $pp;	
-	
+    return $pp;		
 }
 
 
