@@ -15,7 +15,7 @@
 			<li><a href="controleur.php?page=a">Accueil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
 			<li><a href="controleur.php?page=p">Mon Profil</a></li>
-			<li><a href="#">Mes Notes</a></li>
+			<li><a href="controleur.php?page=er">Mes Notes</a></li>
 			<li><a href="controleur.php?page=c">Amis</a></li>
 			<div id = "rechavancée">
 				<li><a href="controleur.php?page=r">Recherche avancée</a></li>

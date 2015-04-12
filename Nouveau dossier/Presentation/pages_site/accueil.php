@@ -74,7 +74,7 @@
 		<a href="#">Confidentialité</a>&nbsp&nbsp&nbsp
 		<a href="#">Mentions légales</a>&nbsp&nbsp&nbsp
 		<a href="../Genie_logiciel/acceuil.htm">Pages Génie logiciel</a>
-		&nbsp&nbsp&nbsp<a href="affichage_table.php"> Table</a>
+		
 		
 		</footer>
 	</div>

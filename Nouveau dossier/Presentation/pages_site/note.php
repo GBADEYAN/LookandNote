@@ -26,7 +26,7 @@ background-color:yellow;
 			<li><a href="controleur.php?page=a">Acceuil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
 			<li><a href="controleur.php?page=p">Mon Profil</a></li>
-			<li><a href="controleur.php?page=n">Mes Notes</a></li>
+			<li><a href="controleur.php?page=er">Mes Notes</a></li>
 			<li><a href="controleur.php?page=c">Amis</a></li>
 			<div id = "rechavancée">
 				<li><a href="controleur.php?page=r">Recherche avancée</a></li>
@@ -35,13 +35,18 @@ background-color:yellow;
 		</ul>
 		<ul id = "Bonjour">
 			<li><b>Bonjour <?php echo $_SESSION["nom"];?></b></li>
-			<li><a href = "#" title ="Télcharger votre Photo de Profil"><img src = "../Image/photoprofil.png"/></a></li>
+			<li><a href = "#" title ="Télcharger votre Photo de Profil"><img src = "<?php echo $_SESSION["photo_p"] ?>" width=45%></a></li>
 			<li><a href = "accueil.php" title = "déconnecter" style = "margin-left: 90px;">Déconnexion</a></li>
 		</ul>
 	</div> 
     </nav>
 
-<?php echo $pp; ?>
+<table>
+<tr>
+<td><?php echo $pp;?> </td>
+<td valign=top width=15% ><?php echo "<br><br><br><br><br><br><br><br><br><fieldset>".$N; ?></fieldset></td>
+</tr>
+</table>
 
 </body>
 

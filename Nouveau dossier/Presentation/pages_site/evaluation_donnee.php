@@ -15,7 +15,7 @@
 			<li><a href="controleur.php?page=a">Acceuil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
 			<li><a href="controleur.php?page=p">Mon Profil</a></li>
-			<li><a href="#">Mes Notes</a></li>
+			<li><a href="controleur.php?page=er">Mes Notes</a></li>
 			<li><a href="controleur.php?page=c">Amis</a></li>
 			<div id = "rechavancée">
 				<li><a href="controleur.php?page=r">Recherche avancée</a></li>
@@ -30,9 +30,11 @@
 	</div> 
     </nav>
 <br><br>
+<p align=center>
 <a href="controleur.php?page=er"> Notes re&ccedil;ues </a>
 &nbsp;&nbsp;&nbsp;
 <a href="controleur.php?page=ed"> Notes donn&eacute;es </a>
+</p>
 
 <?php echo $nd; ?>
 

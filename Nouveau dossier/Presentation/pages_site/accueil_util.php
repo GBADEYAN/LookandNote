@@ -15,7 +15,7 @@
 			<li><a href="controleur.php?page=a">Acceuil</a></li>
 			<li><a href="controleur.php?page=b">Publier</a></li>
 			<li><a href="controleur.php?page=p">Mon Profil</a></li>
-			<li><a href="#">Mes Notes</a></li>
+			<li><a href="controleur.php?page=er">Mes Notes</a></li>
 			<li><a href="controleur.php?page=c">Amis</a></li>
 			<div id = "rechavancée">
 				<li><a href="controleur.php?page=r">Recherche avancée</a></li>
@@ -30,51 +30,25 @@
 	</div> 
     </nav>
 	<section>
+
 	<div id = "sectiondroite">
 	<h2>Liste D'amis</h2>
 		<div "Amis">
-		<?php echo $FG; ?>
-		<!--	<a href = "#">Nom d'utilisateur</a><br>
-			<a href = "#">Activité récente</a><br>
-			<a href = "#"><img src = "../Image/util1.png"></a><br><br>
-			<a href = "#">Nom d'utilisateur</a><br>
-			<a href = "#">Activité récente</a><br>
-			<a href = "#"><img src = "../Image/util2.png"></a><br><br>
-			<a href = "#">Nom d'utilisateur</a><br>
-			<a href = "#">Activité récente</a><br>
-			<a href = "#"><img src = "../Image/util3.png"></a><br><br>
-			<a href = "#">Nom d'utilisateur</a><br>
-			<a href = "#">Activité récente</a><br>
-			<a href = "#"><img src = "../Image/util4.png"></a><br><br>
-			<a href = "#">Nom d'utilisateur</a><br>
-			<a href = "#">Activité récente</a><br>
-			<a href = "#"><img src = "../Image/util5.png"></a><br><br>	-->
+		<?php echo $FG; ?>		
 		</div>
 	</div>
-	
-<?php if(isset($a)){echo $a;} ?>
-	<div id = "pagemilieu">
 
-		<?php echo $FC; ?>
-	
+	<div id = "pagemilieu">
+		<?php echo $FC; ?>	
 	</div>
 	
 	<div id = "sectiongauche">
 	<h2>Activitées Récentes</h2>
 		<div "Activitées">
 		<?php echo $FD; ?>
-		<!--	<a href = "#"><img src = "../Image/util1.png"></a><br>
-			publié par Nom Utilisateur<br><br><br>
-			<a href = "#"><img src = "../Image/util2.png"></a><br>
-			publié par Nom Utilisateur<br><br><br>
-			<a href = "#"><img src = "../Image/util3.png"></a><br>
-			publié par Nom Utilisateur<br><br><br>
-			<a href = "#"><img src = "../Image/util4.png"></a><br>
-			publié par Nom Utilisateur<br><br><br>
-			<a href = "#"><img src = "../Image/util5.png"></a><br>
-			publié par Nom Utilisateur<br><br><br>	-->
 		</div>
 	</div>
+
 	</section>
 	
 	<hr color= "Orange">
