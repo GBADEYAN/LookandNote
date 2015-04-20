@@ -2,9 +2,9 @@
 
 //---------------Connexion au serveur-----------------------
 function connexion_serveur(){
-  $serveur="localhost";
-  $user="blanche";
-  $mdp="azerty";
+  $serveur="";
+  $user="";
+  $mdp="";
 
   $connex=mysql_connect($serveur,$user,$mdp);
   if(!$connex){
@@ -18,10 +18,10 @@ function connexion_serveur(){
 
 //---------------Connexion a la BDD----------------------------
 function connexion_bdd(){
-  $serveur="localhost";
-  $user="blanche";
-  $mdp="azerty";
-  $bdd="projet_cci";
+  $serveur="";
+  $user="";
+  $mdp="";
+  $bdd="";
 
   $connex=mysql_connect($serveur,$user,$mdp);
   $base = mysql_select_db($bdd,$connex);
